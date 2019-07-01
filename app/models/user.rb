@@ -4,7 +4,9 @@ class User < ApplicationRecord
   before_create :create_activation_digest
   validates :name,  presence: true, length: { maximum: 50 }
   
-  
+ def feed
+    Micropost.where("user_id = ?", id)
+  end 
   
   private
 
